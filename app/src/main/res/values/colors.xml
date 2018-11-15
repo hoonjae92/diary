@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#65B6B1</color>
+
+    <!--기본컬러-->
+    <color name="color_white">#ffffff</color>
+    <color name="color_block">#000000</color>
+
+    <!--버튼관련컬러-->
+    <color name="color_btn_unable">#CBCBCB</color>
+    <color name="color_btn_enabled">#F2BBA2</color>
+
 </resources>
