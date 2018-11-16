@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/item_contents_height"
+    android:orientation="horizontal">
+    <TextView
+        android:layout_width="@dimen/item_tv_width"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:text="할 일"/>
+    <TextView
+        android:layout_width="@dimen/item_tv_width"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:text="날 짜"/>
+</LinearLayout>

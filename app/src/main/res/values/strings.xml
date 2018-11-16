@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">boris` diary</string>
+
+    <!--메인-->
+    <string name="main_title_todo">할 일</string>
+    <string name="main_title_completed_todo">완료한 일</string>
 </resources>
