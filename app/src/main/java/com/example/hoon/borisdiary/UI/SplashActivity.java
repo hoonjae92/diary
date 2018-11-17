@@ -1,14 +1,12 @@
-package com.example.hoon.borisdiary.Activity;
+package com.example.hoon.borisdiary.UI;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.hoon.borisdiary.R;
-
-import java.util.concurrent.TimeUnit;
+import com.example.hoon.borisdiary.UI.Main.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
     /** 로딩 화면이 떠있는 시간(밀리초단위)  **/

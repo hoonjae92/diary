@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.MainActivity"
+    tools:context=".UI.Main.MainActivity"
     >
     <LinearLayout
         android:gravity="center"
@@ -51,7 +51,7 @@
 
     </LinearLayout>
     <Button
-        android:id="@+id/btnFAB_Top"
+        android:id="@+id/btnFAB"
         android:layout_width="@dimen/main_floating_btn_size"
         android:layout_height="@dimen/main_floating_btn_size"
         android:layout_gravity="bottom|right"

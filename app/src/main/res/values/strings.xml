@@ -4,4 +4,9 @@
     <!--메인-->
     <string name="main_title_todo">할 일</string>
     <string name="main_title_completed_todo">완료한 일</string>
+
+    <!--TODO부분-->
+    <string name="todo_contents_hint">할 일을 적어주세요.</string>
+    <string name="todo_title_color">표지 색상</string>
+    <string name="todo_save">저장</string>
 </resources>

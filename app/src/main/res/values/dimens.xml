@@ -5,6 +5,10 @@
     <dimen name="elevation_mid">6dp</dimen>
     <dimen name="elevation_low">2dp</dimen>
 
+    <!--헤더 부분-->
+    <dimen name="apphead_btn_back_size">48dp</dimen>
+    <dimen name="apphead_tv_margin">12dp</dimen>
+
     <!--메인-->
     <dimen name="main_padding">20dp</dimen>
     <dimen name="main_floating_btn_size">80dp</dimen>
@@ -14,4 +18,18 @@
     <dimen name="item_contents_height">80dp</dimen>
     <dimen name="item_tv_width">150dp</dimen>
     <dimen name="item_btn_size">40dp</dimen>
+
+    <!--TODO부분-->
+    <dimen name="todo_title_margin">12dp</dimen>
+    <dimen name="todo_contents_height">288dp</dimen>
+    <dimen name="todo_contents_margin">10dp</dimen>
+    <dimen name="todo_color_btn_size">35dp</dimen>
+    <dimen name="todo_color_height">50dp</dimen>
+    <dimen name="todo_seleted_color_height">35dp</dimen>
+    <dimen name="todo_seleted_color_width">70dp</dimen>
+
+    <!--다이얼로그-->
+    <item type="dimen" name="dialog_min_width_major">95%</item>
+    <item type="dimen" name="dialog_min_width_minor">95%</item>
+    <item type="dimen" name="dialog_text_size">40</item>
 </resources>

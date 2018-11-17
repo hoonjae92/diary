@@ -6,11 +6,14 @@
     android:layout_height="@dimen/item_contents_height"
     android:orientation="horizontal">
     <TextView
+        android:id="@+id/todo_tv"
+        android:gravity="center"
         android:layout_width="@dimen/item_tv_width"
         android:layout_height="wrap_content"
         android:singleLine="true"
         android:text="할 일"/>
     <ImageButton
+        android:id="@+id/todo_btn_close"
         android:layout_width="@dimen/item_btn_size"
         android:layout_height="@dimen/item_btn_size"
         android:background="#00ffffff"

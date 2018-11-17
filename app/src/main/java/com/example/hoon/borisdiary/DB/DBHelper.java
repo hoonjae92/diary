@@ -11,31 +11,29 @@ import android.widget.Toast;
 import com.example.hoon.borisdiary.Bean.TODO;
 
 public class DBHelper extends SQLiteOpenHelper {
-    public static DBHelper sqLiteHelper = null;
-    public static final String DATABASE_NAME = "Diary.db";
+    public static final String DATABASE_NAME = "DiaryDB";
     public static final int DB_VERSION = 1;
+    //테이블 명
     public static final String COLOR_TABLE = "COLOR_TABLE";
     public static final String TODO_TABLE = "TODO_TABLE";
+
+    //TODO테이블 컬럼
     public static final String COL_TODO = "COLUMN_TODO";
     public static final String COL_TODO_COLOR = "COLUMN_TODO_COLOR";
+    public static final String COL_CREATE_TIMESTAMP = "COLUMN_CREATE_TIMESTAMP";
+    public static final String COL_DELETE_TIMESTAMP = "COLUMN_DELETE_TIMESTAMP";
+    public static final String COL_STATE = "COLUMN_STATE";
+
+    //COLOR테이블 컬럼
     public static final String COL_COLOR = "COLUMN_COLOR";
 
     private final int[] DefaultCOLOR = {Color.WHITE,Color.GRAY,Color.RED,Color.BLUE,Color.YELLOW,Color.CYAN};
 
     private Context context;
-    private SQLiteDatabase db;
-
-    public static DBHelper getInstance(Context context){ // 싱글턴 패턴으로 구현하였다.
-        if(sqLiteHelper == null){
-            sqLiteHelper = new DBHelper(context);
-        }
-        return sqLiteHelper;
-    }
 
     public DBHelper(Context context)
     {
         super(context, DATABASE_NAME, null, DB_VERSION);
-        db = this.getWritableDatabase();
         this.context = context;
     }
 
@@ -48,7 +46,9 @@ public class DBHelper extends SQLiteOpenHelper {
         sb_todo.append(" _ID INTEGER PRIMARY KEY AUTOINCREMENT, ");
         sb_todo.append(  COL_TODO+" TEXT, ");
         sb_todo.append(  COL_TODO_COLOR+" TEXT, ");
-        sb_todo.append(" COLUMN_TIMESTAMP TIMESTAMP DEFAULT CURRENT_TIMESTAMP )");
+        sb_todo.append(  COL_STATE+" INTEGER, ");
+        sb_todo.append(  COL_CREATE_TIMESTAMP+" TIMESTAMP DEFAULT CURRENT_TIMESTAMP )");
+        sb_todo.append(  COL_DELETE_TIMESTAMP+" DATETIME )");
 
         StringBuffer sb_color = new StringBuffer();
         sb_color.append(" CREATE TABLE "+COLOR_TABLE+" ( ");
@@ -58,7 +58,14 @@ public class DBHelper extends SQLiteOpenHelper {
         // SQLite Database로 쿼리 실행
         db.execSQL(sb_todo.toString());
         db.execSQL(sb_color.toString());
-        DefaultCOLOR();
+
+        //디폴트 색깔 지정
+        for(int i : DefaultCOLOR){
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(COL_COLOR, i);
+            long result = db.insert(COLOR_TABLE, null, contentValues);
+        }
+
     }
 
     /** * Application의 버전이 올라가서 * Table 구조가 변경되었을 때 실행된다.* @param db * @param oldVersion * @param newVersion */
@@ -81,12 +88,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 return true;
         }
 
-    public void DefaultCOLOR(){
-        for(int i : DefaultCOLOR){
-            insertCOLOR(i);
-        }
-    }
-
     public boolean insertCOLOR(int color){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -99,6 +100,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public boolean updateTODO(int id, String todo){
+        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COL_TODO, todo);
         return db.update(TODO_TABLE, values, "_id=" + id, null) > 0;
@@ -106,19 +108,23 @@ public class DBHelper extends SQLiteOpenHelper {
 
     // Delete All
     public void deleteAllTODO() {
+        SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TODO_TABLE, null, null);
     }
 
     // Delete Column
     public boolean deleteTODO(long id){
+        SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(TODO_TABLE, "_id="+id, null) > 0;
     }
 
     public Cursor selectAllTODO(){
+        SQLiteDatabase db = this.getWritableDatabase();
         return db.query(TODO_TABLE, null, null, null, null, null, null);
     }
 
     public Cursor selectAllColor(){
+        SQLiteDatabase db = this.getWritableDatabase();
         return db.query(COLOR_TABLE, null, null, null, null, null, null);
     }
 }
