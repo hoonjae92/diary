@@ -18,6 +18,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String TODO_TABLE = "TODO_TABLE";
 
     //TODO테이블 컬럼
+    public static final String COL_ID = "COLUMN_ID";
     public static final String COL_TODO = "COLUMN_TODO";
     public static final String COL_TODO_COLOR = "COLUMN_TODO_COLOR";
     public static final String COL_CREATE_TIMESTAMP = "COLUMN_CREATE_TIMESTAMP";
@@ -26,6 +27,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
     //COLOR테이블 컬럼
     public static final String COL_COLOR = "COLUMN_COLOR";
+
+    //할 일 상태
+    public static final int TODO_STATE_DELETE = 1;
+    public static final int TODO_STATE_CREATE = 0;
+
 
     private final int[] DefaultCOLOR = {Color.WHITE,Color.GRAY,Color.RED,Color.BLUE,Color.YELLOW,Color.CYAN};
 
@@ -42,16 +48,16 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db)
     {
         StringBuffer sb_todo = new StringBuffer();
-        sb_todo.append(" CREATE TABLE "+TODO_TABLE+" ( ");
-        sb_todo.append(" _ID INTEGER PRIMARY KEY AUTOINCREMENT, ");
-        sb_todo.append(  COL_TODO+" TEXT, ");
-        sb_todo.append(  COL_TODO_COLOR+" TEXT, ");
-        sb_todo.append(  COL_STATE+" INTEGER, ");
-        sb_todo.append(  COL_CREATE_TIMESTAMP+" TIMESTAMP DEFAULT CURRENT_TIMESTAMP )");
+        sb_todo.append(" CREATE TABLE IF NOT EXISTS "+TODO_TABLE+" ( ");
+        sb_todo.append(  COL_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, ");
+        sb_todo.append(  COL_TODO+" TEXT NOT NULL, ");
+        sb_todo.append(  COL_TODO_COLOR+" INTEGER NOT NULL, ");
+        sb_todo.append(  COL_STATE+" INTEGER NOT NULL, ");
+        sb_todo.append(  COL_CREATE_TIMESTAMP+" TIMESTAMP DEFAULT CURRENT_TIMESTAMP, ");
         sb_todo.append(  COL_DELETE_TIMESTAMP+" DATETIME )");
 
         StringBuffer sb_color = new StringBuffer();
-        sb_color.append(" CREATE TABLE "+COLOR_TABLE+" ( ");
+        sb_color.append(" CREATE TABLE IF NOT EXISTS "+COLOR_TABLE+" ( ");
         sb_color.append(" _ID INTEGER PRIMARY KEY AUTOINCREMENT, ");
         sb_color.append(  COL_COLOR+" INTEGER )");
 
@@ -81,6 +87,7 @@ public class DBHelper extends SQLiteOpenHelper {
             ContentValues contentValues = new ContentValues();
             contentValues.put(COL_TODO, todo.getTodo());
             contentValues.put(COL_TODO_COLOR, todo.getTodo_color());
+            contentValues.put(COL_STATE, todo.getState());
             long result = db.insert(TODO_TABLE, null, contentValues);
             if(result == -1)
                 return false;
@@ -103,7 +110,20 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COL_TODO, todo);
-        return db.update(TODO_TABLE, values, "_id=" + id, null) > 0;
+        return db.update(TODO_TABLE, values, COL_ID+"="+id, null) > 0;
+    }
+    public boolean updateTODO(int id, int state){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COL_STATE, state);
+        return db.update(TODO_TABLE, values, COL_ID+"="+id, null) > 0;
+    }
+    public boolean updateTODO(int id, String todo, int color){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COL_TODO, todo);
+        values.put(COL_TODO_COLOR, color);
+        return db.update(TODO_TABLE, values, COL_ID+"="+id, null) > 0;
     }
 
     // Delete All
@@ -113,9 +133,9 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     // Delete Column
-    public boolean deleteTODO(long id){
+    public boolean deleteTODO(int id){
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(TODO_TABLE, "_id="+id, null) > 0;
+        return db.delete(TODO_TABLE, COL_ID+"="+id, null) > 0;
     }
 
     public Cursor selectAllTODO(){

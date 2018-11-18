@@ -11,6 +11,7 @@
 
     <!--메인-->
     <dimen name="main_padding">20dp</dimen>
+    <dimen name="main_margin">18dp</dimen>
     <dimen name="main_floating_btn_size">80dp</dimen>
     <dimen name="main_floating_btn_margin">16dp</dimen>
 
@@ -18,6 +19,8 @@
     <dimen name="item_contents_height">80dp</dimen>
     <dimen name="item_tv_width">150dp</dimen>
     <dimen name="item_btn_size">40dp</dimen>
+    <dimen name="item_margin">30dp</dimen>
+    <dimen name="item_color_margin">15dp</dimen>
 
     <!--TODO부분-->
     <dimen name="todo_title_margin">12dp</dimen>

@@ -32,7 +32,6 @@
                     android:layout_height="@dimen/todo_contents_height"
                     android:layout_margin="@dimen/todo_contents_margin"
                     android:background="@android:drawable/editbox_background"
-                    android:focusable="true"
                     android:focusableInTouchMode="true"
                     android:gravity="start"
                     android:hint="@string/todo_contents_hint"
@@ -89,6 +88,7 @@
             </LinearLayout>
     </ScrollView>
     <LinearLayout
+        android:id="@+id/btnSave"
         android:layout_gravity="bottom"
         android:gravity="center"
         android:layout_width="match_parent"

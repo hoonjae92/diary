@@ -4,9 +4,19 @@
     <!--메인-->
     <string name="main_title_todo">할 일</string>
     <string name="main_title_completed_todo">완료한 일</string>
+    <string name="main_title_completed_guide"> 30일 후 자동 삭제됩니다.</string>
 
     <!--TODO부분-->
     <string name="todo_contents_hint">할 일을 적어주세요.</string>
     <string name="todo_title_color">표지 색상</string>
     <string name="todo_save">저장</string>
+
+    <!--TAG를 위한 설정-->
+    <string name="todo_id">id</string>
+    <string name="todo_contents">todo</string>
+    <string name="todo_color">color</string>
+    <string name="todo_state">state</string>
+    <string name="todo_create_timestamp">create_timestamp</string>
+    <string name="todo_delete_timestamp">delete_timestamp</string>
+
 </resources>

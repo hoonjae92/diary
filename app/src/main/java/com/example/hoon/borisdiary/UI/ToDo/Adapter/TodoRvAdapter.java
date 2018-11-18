@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,21 +20,21 @@ public class TodoRvAdapter extends RecyclerView.Adapter<TodoRvAdapter.ViewHolder
     private ArrayList<TODO> items;
     private Context context;
 
-    public TodoRvAdapter(ArrayList<TODO> items, Context context) {
-        this.items = items;
-        this.context = context;
-    }
-
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tv_todo;
-        Button btnClose;
+        ImageButton btnClose;
         public ViewHolder(View itemView) {
             super(itemView);
-            tv_todo = itemView.findViewById(R.id.todo_tv);
-            btnClose = itemView.findViewById(R.id.todo_btn_close);
+            this.tv_todo = itemView.findViewById(R.id.todo_tv);
+            this.btnClose = (ImageButton) itemView.findViewById(R.id.todo_btn_close);
         }
     }
 
+    public TodoRvAdapter(ArrayList<TODO> items, Context context) {
+        this.items = items;
+        this.context = context;
+
+    }
 
     @NonNull
     @Override
@@ -53,6 +55,7 @@ public class TodoRvAdapter extends RecyclerView.Adapter<TodoRvAdapter.ViewHolder
             }
         });
     }
+
 
     @Override
     public int getItemCount() {

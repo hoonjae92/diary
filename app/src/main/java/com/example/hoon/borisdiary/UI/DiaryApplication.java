@@ -30,4 +30,11 @@ public class DiaryApplication extends Application {
                 .show();
     }
 
+    public static void DiaryDialog(Context context, String message){
+        new AlertDialog.Builder(context)
+                .setMessage(message)
+                .setPositiveButton("확인",null)
+                .show();
+    }
+
 }

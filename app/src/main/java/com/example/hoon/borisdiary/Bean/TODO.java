@@ -3,16 +3,16 @@ package com.example.hoon.borisdiary.Bean;
 public class TODO {
     private int id;
     private String todo;
-    private String todo_color;
+    private int todo_color;
     private String create_time;
     private String delete_time;
     private int state;
 
-    public String getTodo_color() {
+    public int getTodo_color() {
         return todo_color;
     }
 
-    public void setTodo_color(String todo_color) {
+    public void setTodo_color(int todo_color) {
         this.todo_color = todo_color;
     }
     public String getTodo() {
@@ -47,11 +47,11 @@ public class TODO {
         this.create_time = create_time;
     }
 
-    public int getStatus() {
+    public int getState() {
         return state;
     }
 
-    public void setStatus(int state) {
+    public void setState(int state) {
         this.state = state;
     }
 }
