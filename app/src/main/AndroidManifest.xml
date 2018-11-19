@@ -3,19 +3,30 @@
     package="com.example.hoon.borisdiary">
 
     <application
-        android:allowBackup="true"
+        android:name=".UI.DiaryApplication"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
+        android:largeHeap="true"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".UI.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".UI.Main.MainActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".UI.ToDo.TODO_AddActivity"/>
+        <activity android:name=".UI.ToDo.TODO_ModifyActivity"/>
     </application>
 
 </manifest>
